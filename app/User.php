@@ -45,4 +45,9 @@ class User extends Authenticatable
     {
         return Storage::url('avatars/'.$this->id.'/'.$this->avatar);
     }
+
+    public function posts()
+    {
+        return $this->hasMany('App\Post');
+    }
 }

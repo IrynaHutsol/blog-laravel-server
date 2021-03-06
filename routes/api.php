@@ -5,13 +5,14 @@ use Illuminate\Http\Request;
 Route::group([
     'prefix' => 'auth'
 ], function () {
-    Route::post('login', 'AuthController@login');
-    Route::post('signup', 'AuthController@signup');
-  
+    Route::post('/login', 'AuthController@login');
+    Route::post('/signup', 'AuthController@signup');  
     Route::group([
-      'middleware' => 'auth:api'
+        'middleware' => 'auth:api'
     ], function() {
-        Route::get('logout', 'AuthController@logout');
-        Route::get('user', 'AuthController@user');
+        Route::get('/logout', 'AuthController@logout');
+        Route::get('/user', 'AuthController@user');
+        Route::post('/posts', 'PostController@create');
     });
 });
+// Route::resource('/posts', 'PostController');
