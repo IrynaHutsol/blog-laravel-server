@@ -15,4 +15,5 @@ Route::group([
         Route::post('/posts', 'PostController@create');
     });
 });
-// Route::resource('/posts', 'PostController');
+
+Route::get('/posts', 'PostController@getPosts');

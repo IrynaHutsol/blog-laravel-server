@@ -22,7 +22,8 @@ class PostController extends Controller
                 $user = Auth::user()->id;
                 $post = new Post([
                     'user_id' =>  $user,
-                    'content' => $request['content']
+                    'content' => $request['content'],
+                    'date' => $request['date']
                 ]);
                 $post->save();
             }
@@ -35,5 +36,15 @@ class PostController extends Controller
         return response()->json([
             'status' => 'Error'
         ]);
+    }
+
+    /**
+     * Display posts of the resource
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getPosts()
+    {   
+        return response()->json(Post::all());
     }
 }
