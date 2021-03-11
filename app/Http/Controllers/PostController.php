@@ -47,4 +47,24 @@ class PostController extends Controller
     {   
         return response()->json(Post::all());
     }
+
+    /**
+     *  Display the specific post by id
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {   
+        $post = Post::find($id);
+
+        if(!$post) {
+            return response()->json([
+                'status' => false,
+                'message' => "Post not found"
+            ]);
+        }
+
+        return $post;
+    }
 }

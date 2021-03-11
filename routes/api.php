@@ -17,3 +17,4 @@ Route::group([
 });
 
 Route::get('/posts', 'PostController@getPosts');
+Route::get('/posts/{id}', 'PostController@show');
