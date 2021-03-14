@@ -13,8 +13,11 @@ Route::group([
         Route::get('/logout', 'AuthController@logout');
         Route::get('/user', 'AuthController@user');
         Route::post('/posts', 'PostController@create');
+        Route::post('/comments', 'CommentController@create');
     });
 });
 
 Route::get('/posts', 'PostController@getPosts');
 Route::get('/posts/{id}', 'PostController@show');
+
+Route::get('/comments', 'CommentController@getComments');
