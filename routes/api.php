@@ -12,6 +12,7 @@ Route::group([
     ], function() {
         Route::get('/logout', 'AuthController@logout');
         Route::get('/user', 'AuthController@user');
+        Route::post('/send/email', 'AuthController@mail');
         Route::post('/posts', 'PostController@create');
         Route::post('/comments', 'CommentController@create');
     });

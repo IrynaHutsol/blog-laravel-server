@@ -6,6 +6,8 @@ use Carbon\Carbon;
 use App\User;
 use Avatar;
 use Storage;
+use App\Mail\InviteFriends;
+use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {
@@ -98,5 +100,30 @@ class AuthController extends Controller
     public function user(Request $request)
     {
         return response()->json($request->user());
+    }
+
+    /**
+     * Send mail (invite friends)
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function mail(Request $request)
+    {
+        if ( !empty( $request['email']) ) {
+            if (Auth::check()) {
+                $user = Auth::user()->name;
+                $email = Auth::user()->email;
+                Mail::to($request['email'])->send(new InviteFriends($user, $email));
+            }
+
+            return response()->json([
+                'status' => 'Email has been sent'
+            ]);
+        }
+
+        return response()->json([
+            'status' => 'Error'
+        ]);
     }
 }
